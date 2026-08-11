@@ -7,46 +7,45 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* 白背景 */
+  /* 短い画面でハミ出さないよう dvh (Dynamic Viewport Height) を活用 */
+  min-height: 100dvh; 
   background-color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* 全体のサイズ計算を崩さないための設定 */
   box-sizing: border-box;
-  overflow: hidden; /* 画面全体のスクロールバーを隠す */
+  overflow: hidden;
 }
 
 .clock-container {
   text-align: center;
   background-color: #ffffff;
-  /* 文字を極限まで大きくするため、内側の余白を減らす */
-  padding: 20px; 
+  padding: 10px; 
   width: 100%;
-  /* コンテナ自体の最大幅をなくす */
   max-width: none; 
 }
 
 #clock {
-  /* ★ここを調整★ */
-  /* 画面の横幅(vw)に合わせて、はみ出さない限界の大きさに設定 */
-  /* 「00:00:00」の8文字が収まる限界値（フォントによって微調整が必要） */
-  font-size: 28vw; 
+  /* 
+    【変更点】
+    17vmin: 画面の「縦横の小さい方」を基準にして拡大縮小（スマホ縦・横どちらも対応）
+    clamp: 最小サイズ(4rem) 〜 最大サイズ(22vw) の間で安全に収まるよう自動調整
+  */
+  font-size: clamp(4rem, 17vmin, 22vw); 
   
   font-weight: 500;
-  /* 黒文字 */
   color: #000000;
   
   /* 右ズレと揺れを防ぐ必須設定 */
-  letter-spacing: -0.05em; /* 文字間隔をわずかに詰め、より大きく見せる */
-  font-variant-numeric: tabular-nums; /* 数字の幅を均一化して中央を固定 */
+  letter-spacing: -0.02em; /* 詰まりすぎによるハミ出しを抑えるため微調整 */
+  font-variant-numeric: tabular-nums;
   
   line-height: 1;
   display: block;
 }
 
 #date {
-  /* 日付も画面幅に合わせて拡大 */
-  font-size: 4vw; 
+  /* 時計の大きさに連動して拡大縮小する設計に変更 */
+  font-size: clamp(1rem, 4vmin, 3.5vw); 
   color: #888;
-  margin-top: 1vh; /* 画面の高さに合わせた余白 */
+  margin-top: 2vh;
   letter-spacing: 0.1em;
 }
