@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* 白背景 */
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* 全体のサイズ計算を崩さないための設定 */
+  box-sizing: border-box;
+  overflow: hidden; /* 画面全体のスクロールバーを隠す */
+}
+
+.clock-container {
+  text-align: center;
+  background-color: #ffffff;
+  /* 文字を極限まで大きくするため、内側の余白を減らす */
+  padding: 20px; 
+  width: 100%;
+  /* コンテナ自体の最大幅をなくす */
+  max-width: none; 
+}
+
+#clock {
+  /* ★ここを調整★ */
+  /* 画面の横幅(vw)に合わせて、はみ出さない限界の大きさに設定 */
+  /* 「00:00:00」の8文字が収まる限界値（フォントによって微調整が必要） */
+  font-size: 28vw; 
+  
+  font-weight: 500;
+  /* 黒文字 */
+  color: #000000;
+  
+  /* 右ズレと揺れを防ぐ必須設定 */
+  letter-spacing: -0.05em; /* 文字間隔をわずかに詰め、より大きく見せる */
+  font-variant-numeric: tabular-nums; /* 数字の幅を均一化して中央を固定 */
+  
+  line-height: 1;
+  display: block;
+}
+
+#date {
+  /* 日付も画面幅に合わせて拡大 */
+  font-size: 4vw; 
+  color: #888;
+  margin-top: 1vh; /* 画面の高さに合わせた余白 */
+  letter-spacing: 0.1em;
+}
